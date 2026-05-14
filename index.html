@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sunset Spotter</title>
+
+  <style>
+
+    body{
+      margin:0;
+      padding:0;
+      font-family:Arial, sans-serif;
+      background:linear-gradient(to bottom right,#1e1e2f,#ff9966);
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:white;
+    }
+
+    .container{
+      width:90%;
+      max-width:600px;
+      background:rgba(255,255,255,0.1);
+      padding:30px;
+      border-radius:20px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 0 20px rgba(0,0,0,0.3);
+    }
+
+    h1{
+      text-align:center;
+      margin-bottom:10px;
+      font-size:40px;
+    }
+
+    p{
+      text-align:center;
+      margin-bottom:25px;
+    }
+
+    .question{
+      margin-bottom:20px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:8px;
+      font-weight:bold;
+    }
+
+    select{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      font-size:16px;
+    }
+
+    button{
+      width:100%;
+      padding:15px;
+      border:none;
+      border-radius:12px;
+      background:#ffd166;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:white;
+      transform:scale(1.02);
+    }
+
+    #result{
+      margin-top:25px;
+      padding:20px;
+      border-radius:15px;
+      background:rgba(0,0,0,0.25);
+      display:none;
+      text-align:center;
+      font-size:22px;
+      line-height:1.5;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>🌇 Sunset Spotter</h1>
+
+    <p>
+      Find the best sunset and chill location in İzmir!
+    </p>
+
+    <div class="question">
+      <label>Weather</label>
+
+      <select id="weather">
+        <option value="Sunny">Sunny</option>
+        <option value="Rainy">Rainy</option>
+        <option value="Windy">Windy</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <label>Time</label>
+
+      <select id="time">
+        <option value="Morning">Morning</option>
+        <option value="Afternoon">Afternoon</option>
+        <option value="Evening">Evening</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <label>Transportation</label>
+
+      <select id="transport">
+        <option value="Walking">Walking</option>
+        <option value="Public">Public Transport</option>
+        <option value="Car">Car</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <label>Season</label>
+
+      <select id="season">
+        <option value="Summer">Summer</option>
+        <option value="Winter">Winter</option>
+        <option value="Spring">Spring</option>
+        <option value="Autumn">Autumn</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <label>Your Area</label>
+
+      <select id="place">
+        <option value="Bornova">Bornova</option>
+        <option value="Karşıyaka">Karşıyaka</option>
+        <option value="Alsancak">Alsancak</option>
+        <option value="Buca">Buca</option>
+      </select>
+    </div>
+
+    <button onclick="showResult()">
+      Find My Spot
+    </button>
+
+    <div id="result"></div>
+
+  </div>
+
+  <script>
+
+    function showResult(){
+
+      let weather = document.getElementById("weather").value;
+      let time = document.getElementById("time").value;
+      let transport = document.getElementById("transport").value;
+      let season = document.getElementById("season").value;
+      let place = document.getElementById("place").value;
+
+      let message = "";
+
+      // SUNNY
+      if(weather === "Sunny"){
+
+        if(place === "Karşıyaka"){
+          message = "🌅 Go to Bostanlı Coast for an amazing sunset!";
+        }
+
+        else if(place === "Alsancak"){
+          message = "🌇 Walk through Kordon during sunset!";
+        }
+
+        else if(place === "Bornova"){
+          message = "☀️ Visit Kültürpark and relax!";
+        }
+
+        else if(place === "Buca"){
+          message = "🌴 Try İnciraltı Coast today!";
+        }
+
+      }
+
+      // RAINY
+      else if(weather === "Rainy"){
+
+        if(time === "Evening"){
+          message = "☕ Go to a cozy cafe in Alsancak!";
+        }
+
+        else{
+          message = "🎬 Visit a shopping mall or cinema!";
+        }
+
+      }
+
+      // WINDY
+      else if(weather === "Windy"){
+
+        if(transport === "Car"){
+          message = "🚗 Drive along the coastline and enjoy the weather!";
+        }
+
+        else{
+          message = "🎮 Stay home and watch sunset videos!";
+        }
+
+      }
+
+      // SUMMER BONUS
+      if(season === "Summer" && transport === "Car"){
+        message += "<br><br>🌊 Bonus: Perfect time for İnciraltı Beach!";
+      }
+
+      // RESULT
+      let resultBox = document.getElementById("result");
+
+      resultBox.style.display = "block";
+
+      resultBox.innerHTML = message;
+
+    }
+
+  </script>
+
+</body>
+
+</html>
